@@ -1,0 +1,81 @@
+[ 
+  { 
+    "idTransaksi": 1, 
+    "barang_id": "BR05", 
+    "tipe": "masuk", 
+    "jumlah": 15, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 2, 
+    "barang_id": "MG01", 
+    "tipe": "keluar", 
+    "jumlah": 10, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 3, 
+    "barang_id": "MI02", 
+    "tipe": "masuk", 
+    "jumlah": 23, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 4, 
+    "barang_id": "BB03", 
+    "tipe": "keluar", 
+    "jumlah": 6, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 5, 
+    "barang_id": "SH03", 
+    "tipe": "masuk", 
+    "jumlah": 10, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 6, 
+    "barang_id": "SM04", 
+    "tipe": "keluar", 
+    "jumlah": 5, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 7, 
+    "barang_id": "CK05", 
+    "tipe": "masuk", 
+    "jumlah": 8, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 8, 
+    "barang_id": "KP01", 
+    "tipe": "keluar", 
+    "jumlah": 300, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 9, 
+    "barang_id": "MK02", 
+    "tipe": "masuk", 
+    "jumlah": 50, 
+    "tanggal": "2025-04-29" 
+  }, 
+
+  { 
+    "idTransaksi": 10, 
+    "barang_id": "AM03", 
+    "tipe": "keluar", 
+    "jumlah": 30, 
+    "tanggal": "2025-04-29" 
+  }
+]
