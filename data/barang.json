@@ -1,0 +1,430 @@
+{
+    "BR": [
+      {
+        "id": "BR01",
+        "nama": "Beras Sania",
+        "harga": 83000,
+        "berat": "5 Kg",
+        "stok": 40
+      },
+      
+{
+        "id": "BR02",
+        "nama": "Beras Jepang Koshihikari",
+        "harga": 125000,
+        "berat": "5 Kg",
+        "stok": 20
+      },
+      {
+        "id": "BR03",
+        "nama": "Beras Rojolele",
+        "harga": 55000,
+        "berat": "5 Kg",
+        "stok": 35
+      },
+      {
+        "id": "BR04",
+        "nama": "Beras Barelang Premium",
+        "harga": 77000,
+        "berat": "5 Kg",
+        "stok": 20
+      },
+      {
+        "id": "BR05",
+        "nama": "Beras Fortune Premium",
+        "harga": 95000,
+        "berat": "5 Kg",
+        "stok": 20
+      }
+    ],
+    "MG": [
+      {
+        "id": "MG01",
+        "nama": "Minyak Goreng Sunco",
+        "harga": 22000,
+        "berat": "1 Liter",
+        "stok": 30
+      },
+      {
+        "id": "MG02",
+        "nama": "Minyak Goreng Kuwali",
+        "harga": 19000,
+        "berat": "1 Liter",
+        "stok": 35
+      },
+      
+
+
+
+
+
+
+{
+        "id": "MG03",
+        "nama": "Minyak Goreng Bimoli",
+        "harga": 26000,
+        "berat": "1 Liter",
+        "stok": 20
+      },
+      {
+        "id": "MG04",
+        "nama": "Minyak Goreng Sovia",
+        "harga": 24000,
+        "berat": "1 Liter",
+        "stok": 25
+      },
+      {
+        "id": "MG05",
+        "nama": "Minyak Goreng Fortune",
+        "harga": 30000,
+        "berat": "1 Liter",
+        "stok": 15
+      }
+    ],
+    "MI": [
+      {
+        "id": "MI01",
+        "nama": "Mie Indomie",
+        "harga": 125000,
+        "berat": "1 Dus",
+        "stok": 15
+      },
+      {
+        "id": "MI02",
+        "nama": "Mie Sukses",
+        "harga": 105000,
+        "berat": "1 Dus",
+        "stok": 12
+      },
+      {
+        "id": "MI03",
+        "nama": "Mie Sarimi",
+        "harga": 96000,
+        "berat": "1 Dus",
+        "stok": 10
+      },
+      
+
+
+
+
+
+
+{
+        "id": "MI04",
+        "nama": "Mie Sedaap",
+        "harga": 120000,
+        "berat": "1 Dus",
+        "stok": 20
+      },
+      {
+        "id": "MI05",
+        "nama": "Mie Supermie",
+        "harga": 80000,
+        "berat": "1 Dus",
+        "stok": 25
+      }
+    ],
+    "BB": [
+      {
+        "id": "BB01",
+        "nama": "Bumbu Nasi Goreng",
+        "harga": 2000,
+        "berat": "20Gr",
+        "stok": 20
+      },
+      {
+        "id": "BB02",
+        "nama": "Bumbu Ayam Goreng",
+        "harga": 2500,
+        "berat": "20Gr",
+        "stok": 15
+      },
+      {
+        "id": "BB03",
+        "nama": "Bumbu Ikan Goreng",
+        "harga": 2500,
+        "berat": "20Gr",
+        "stok": 18
+      },
+      {
+        "id": "BB04",
+        "nama": "Bumbu Tempe Goreng",
+        "harga": 1800,
+        "berat": "20Gr",
+        "stok": 25
+      },
+      
+
+
+
+
+
+
+{
+        "id": "BB05",
+        "nama": "Bumbu Sayur Asem",
+        "harga": 1500,
+        "berat": "20Gr",
+        "stok": 12
+      }
+    ],
+    "SH": [
+      {
+        "id": "SH01",
+        "nama": "Clear Anti Ketombe",
+        "harga": 19000,
+        "berat": "170ml",
+        "stok": 25
+      },
+      {
+        "id": "SH02",
+        "nama": "Sunsilk Hijab Refresh",
+        "harga": 18500,
+        "berat": "180ml",
+        "stok": 20
+      },
+      {
+        "id": "SH03",
+        "nama": "Pantene Hair Fall Control",
+        "harga": 21000,
+        "berat": "200ml",
+        "stok": 15
+      },
+      {
+        "id": "SH04",
+        "nama": "Head & Shoulders Cool Menthol",
+        "harga": 22000,
+        "berat": "190ml",
+        "stok": 18
+      },
+      {
+        "id": "SH05",
+        "nama": "Lifebuoy Strong & Shiny",
+        "harga": 17000,
+        "berat": "200ml",
+        "stok": 22
+      }
+    ],
+
+
+
+
+
+
+    "SM": [
+      {
+        "id": "SM01",
+        "nama": "Lifebuoy Total 10",
+        "harga": 8000,
+        "berat": "80 gr",
+        "stok": 40
+      },
+      {
+        "id": "SM02",
+        "nama": "Dettol Cool",
+        "harga": 9500,
+        "berat": "85 gr",
+        "stok": 35
+      },
+      {
+        "id": "SM03",
+        "nama": "Lux Soft Touch",
+        "harga": 7500,
+        "berat": "75 gr",
+        "stok": 50
+      },
+      {
+        "id": "SM04",
+        "nama": "Biore Body Foam Refill",
+        "harga": 18000,
+        "berat": "450 ml",
+        "stok": 25
+      },
+      {
+        "id": "SM05",
+        "nama": "Dove Beauty Bar",
+        "harga": 10000,
+        "berat": "100 gr",
+        "stok": 30
+      }
+    ],
+    "CK": [
+      {
+        "id": "CK01",
+        "nama": "Ciki Jagung Pedas",
+        "harga": 75000,
+        "berat": "900gr",
+        "stok": 20
+      },
+
+
+
+
+
+
+      {
+        "id": "CK02",
+        "nama": "Keripik Kentang BBQ",
+        "harga": 96000,
+        "berat": "1080gr",
+        "stok": 15
+      },
+      {
+        "id": "CK03",
+        "nama": "Ciki Keju Krunchy",
+        "harga": 90000,
+        "berat": "1050gr",
+        "stok": 18
+      },
+      {
+        "id": "CK04",
+        "nama": "Keripik Pisang Manis",
+        "harga": 100000,
+        "berat": "1000gr",
+        "stok": 10
+      },
+      {
+        "id": "CK05",
+        "nama": "Stik Singkong Balado",
+        "harga": 87500,
+        "berat": "1000gr",
+        "stok": 12
+      }
+    ],
+    "KP": [
+      {
+        "id": "KP01",
+        "nama": "Kopi Hitam Sachet",
+        "harga": 1500,
+        "berat": "20 gr",
+        "stok": 500
+      },
+      {
+        "id": "KP02",
+        "nama": "Kopi Susu Sachet",
+        "harga": 2000,
+        "berat": "25 gr",
+        "stok": 400
+      },
+
+
+
+
+
+
+
+
+      {
+        "id": "KP03",
+        "nama": "Kopi Tubruk",
+        "harga": 2500,
+        "berat": "25 gr",
+        "stok": 300
+      },
+      {
+        "id": "KP04",
+        "nama": "Kopi Arabika Premium",
+        "harga": 5000,
+        "berat": "30 gr",
+        "stok": 200
+      },
+      {
+        "id": "KP05",
+        "nama": "Kopi Espresso Instant",
+        "harga": 3500,
+        "berat": "30 gr",
+        "stok": 250
+      }
+    ],
+
+
+    "MK": [
+      {
+        "id": "MK01",
+        "nama": "Coca-Cola",
+        "harga": 6000,
+        "berat": "600 ml",
+        "stok": 100
+      },
+      {
+        "id": "MK02",
+        "nama": "Floridina",
+        "harga": 4500,
+        "berat": "350 ml",
+        "stok": 50
+      },
+      {
+        "id": "MK03",
+        "nama": "Sprite",
+        "harga": 5500,
+        "berat": "600 ml",
+        "stok": 37
+      },
+
+
+
+
+
+
+      {
+        "id": "MK04",
+        "nama": "Teh Botol Sosro",
+        "harga": 4000,
+        "berat": "350 ml",
+        "stok": 55
+      },
+      {
+        "id": "MK05",
+        "nama": "Mizone",
+        "harga": 6000,
+        "berat": "500 ml",
+        "stok": 30
+      }
+    ],
+    "AM": [
+      {
+        "id": "AM01",
+        "nama": "AQUA",
+        "harga": 3500,
+        "berat": "600 ml",
+        "stok": 80
+      },
+      {
+        "id": "AM02",
+        "nama": "CLEO",
+        "harga": 3000,
+        "berat": "600 ml",
+        "stok": 300
+      },
+      {
+        "id": "AM03",
+        "nama": "Nestle",
+        "harga": 3500,
+        "berat": "330 ml",
+        "stok": 46
+      },
+      {
+        "id": "AM04",
+        "nama": "Le Minerale",
+        "harga": 5000,
+        "berat": "1500 ml",
+        "stok": 27
+      },
+
+
+
+
+
+
+
+
+      {
+        "id": "AM05",
+        "nama": "Club",
+        "harga": 3000,
+        "berat": "600 ml",
+        "stok": 75
+      }
+    ]
+  }
