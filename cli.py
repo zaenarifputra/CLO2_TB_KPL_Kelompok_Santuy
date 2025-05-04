@@ -3,6 +3,8 @@ import time
 import json
 import requests
 
+from service.stock_service import tambah_barang_ke_file
+
 API_URL = "http://127.0.0.1:8000"
 
 # Tunggu API siap
@@ -26,12 +28,13 @@ def lihat_barang():
     except Exception as e:
         print(f"Gagal mengambil data: {e}")
 
-def tambah_barang():
+def tambah_barang_cli():
     id = input("ID Barang: ")
     nama = input("Nama Barang: ")
     harga = input("Harga Barang: ")
     berat = input("Berat: ")
     stok = input("Stok: ")
+    kategori = input("Kategori Barang (misal: BR): ")
 
     try:
         data = {
@@ -41,10 +44,16 @@ def tambah_barang():
             "berat": berat,
             "stok": int(stok),
         }
-        res = requests.post(f"{API_URL}/stok/stok", json=data)
-        print(json.dumps(res.json(), indent=2, ensure_ascii=False))
+
+        result_lokal = tambah_barang_ke_file(data, kategori)
+        print(json.dumps(result_lokal, indent=2, ensure_ascii=False))
+
+    except ValueError as e:
+        print(f"Input tidak valid: {e}")
     except Exception as e:
         print(f"Gagal menambah barang: {e}")
+
+
 
 def edit_barang():
     id_barang = input("ID Barang yang ingin diedit: ")
@@ -161,7 +170,7 @@ def main_menu():
         if choice == "1":
             lihat_barang()
         elif choice == "2":
-            tambah_barang()
+            tambah_barang_cli()
         elif choice == "3":
             edit_barang()
         elif choice == "4":

@@ -38,9 +38,9 @@ def ambil_barang_berdasarkan_id(id: str):
 
 
 @router.post("/", response_model=ResponseModel[Barang], summary="Tambah barang")
-def tambah_barang_endpoint(barang: Barang):
+def tambah_barang_endpoint(barang: Barang, kategori: str):
     try:
-        hasil = service_tambah(barang.dict())
+        hasil = service_tambah(barang.dict(), kategori)
         if "error" in hasil:
             raise HTTPException(status_code=400, detail=hasil["error"])
         return ResponseModel[Barang](
@@ -86,15 +86,13 @@ async def ubah_barang(id_barang: str, barang: Barang):
         )
 
 
-@router.delete("/{id_barang}", response_model=ResponseModel[Barang], summary="Hapus barang")
+@router.delete("/{id_barang}", summary="Hapus barang", response_model=ResponseModel[dict])
 def delete_barang(id_barang: str):
     hasil = hapus_barang(id_barang)
     if "error" in hasil:
         raise HTTPException(status_code=404, detail=hasil["error"])
-    
-    # Mengembalikan dummy data Barang karena barang sudah dihapus
-    return ResponseModel[Barang](
+    return ResponseModel[dict](
         status="success",
         message=hasil["message"],
-        data=Barang(id=id_barang, nama="", harga=0, stok=0)
+        data={"id": id_barang}
     )
