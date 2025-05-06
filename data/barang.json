@@ -30,10 +30,10 @@
         },
         {
             "id": "BR05",
-            "nama": "Beras AJA",
-            "harga": 10000,
-            "berat": "5 KG",
-            "stok": 4
+            "nama": "Beras Lele",
+            "harga": 120000,
+            "berat": "15 KG",
+            "stok": 3
         }
     ],
     "MG": [
