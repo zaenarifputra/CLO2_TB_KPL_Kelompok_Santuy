@@ -4,6 +4,9 @@ from schemas.barang_schema import Barang
 from utils.file_manager import read_json, write_json
 from utils.validator import valid_id_barang
 from typing import Union
+from schemas.barang_schema import Barang 
+from utils.file_manager import read_json, write_json 
+import importlib
 import json
 import os
 
@@ -15,119 +18,110 @@ def get_all_barang() -> list:
     return read_json(BARANG_PATH)
 
 
-def get_barang_by_id(id_barang: str) -> Barang:
-    if not valid_id_barang(id_barang):
-        raise HTTPException(
-            status_code=400,
-            detail="Format ID barang tidak valid. Gunakan format seperti A123 atau B0001."
-        )
+def get_barang_by_id(id: str) -> Barang:
+    try:
+        semua_barang = read_json("data/barang.json")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Gagal membaca file JSON: {str(e)}")
+
+    for kategori in semua_barang.values():
+        for barang_dict in kategori:
+            if barang_dict.get("id") == id:
+                try:
+                    return Barang(**barang_dict)
+                except Exception as e:
+                    raise HTTPException(status_code=500, detail=f"Data tidak valid: {str(e)}")
+
+    raise HTTPException(status_code=404, detail=f"Barang dengan ID '{id}' tidak ditemukan.")
 
 
-    data = read_json(BARANG_PATH)
-    for kategori in data.values():
-        for barang in kategori:
+def tambah_barang(barang: dict, kategori: str):
+    data_barang = read_json("data/barang.json")
+    
+    if kategori not in data_barang:
+        data_barang[kategori] = []
+    
+    for existing_barang in data_barang[kategori]:
+        if existing_barang["id"] == barang["id"]:
+            return {"error": f"Barang dengan ID '{barang['id']}' sudah ada dalam kategori '{kategori}'."}
+    
+    data_barang[kategori].append(barang)
+    data_barang[kategori].sort(key=lambda x: x["id"])
+    
+    write_json("data/barang.json", data_barang)
+    
+    return {
+        "message": f"Barang dengan ID '{barang['id']}' berhasil ditambahkan ke kategori '{kategori}'.",
+        "data": barang
+    }
+
+def tambah_barang_ke_file(barang: dict, kategori: str):
+    from utils.file_manager import read_json, write_json
+
+    data_barang = read_json("data/barang.json")
+
+    if kategori not in data_barang:
+        data_barang[kategori] = []
+
+    for existing_barang in data_barang[kategori]:
+        if existing_barang["id"] == barang["id"]:
+            return {"error": f"Barang dengan ID '{barang['id']}' sudah ada dalam kategori '{kategori}'."}
+
+    data_barang[kategori].append(barang)
+    data_barang[kategori].sort(key=lambda x: x["id"])
+
+    write_json("data/barang.json", data_barang)
+
+    return {
+        "message": f"Barang dengan ID '{barang['id']}' berhasil ditambahkan ke kategori '{kategori}'.",
+        "data": barang
+    }
+
+
+def edit_barang(id_barang: str, data_update: dict):
+    data_barang = read_json("data/barang.json")
+    barang_ditemukan = None
+    for kategori, daftar_barang in data_barang.items():
+        for i, barang in enumerate(daftar_barang):
             if barang["id"] == id_barang:
-                return Barang(**barang)
-    
-    raise HTTPException(status_code=404, detail=f"Barang dengan ID '{id_barang}' tidak ditemukan.")
-
-
-def tambah_barang(barang_baru: dict) -> Union[dict, Barang]:
-    data = read_json(BARANG_PATH)
-    kategori = barang_baru["id"][0].upper()
-    
-    if kategori not in data:
-        data[kategori] = []
-
-
-    for barang in data[kategori]:
-        if barang["id"] == barang_baru["id"]:
-            return {"error": "Barang dengan ID ini sudah ada"}
-
-
-    data[kategori].append(barang_baru)
-    write_json(BARANG_PATH, data)
-
-
-    return {"message": "Barang berhasil ditambahkan", "data": barang_baru}
-
-
-def edit_barang(id_barang: str, data_update: dict) -> dict:
-    try:
-        data = read_json(BARANG_PATH)
-
-
-        if not isinstance(data, dict):
-            return {"error": "Format data barang tidak valid (bukan dict kategori)"}
-
-
-        barang_ditemukan = False
-        hasil_barang = {}
-
-
-        for kategori, daftar_barang in data.items():
-            for index, barang in enumerate(daftar_barang):
-                if barang.get("id") == id_barang:
-                    for key, value in data_update.items():
-                        if key in barang:
-                            data[kategori][index][key] = value
-                    barang_ditemukan = True
-                    hasil_barang = data[kategori][index]
-                    break
-            if barang_ditemukan:
+                data_barang[kategori][i].update(data_update)
+                barang_ditemukan = data_barang[kategori][i]
                 break
+        if barang_ditemukan:
+            break
+    if not barang_ditemukan:
+        return {"error": f"Barang dengan ID '{id_barang}' tidak ditemukan."}
+    write_json("data/barang.json", data_barang)
+    return {
+        "message": f"Barang dengan ID '{id_barang}' berhasil diperbarui.",
+        "barang": barang_ditemukan
+    }
 
+def hapus_barang(id_barang: str):
+    data_barang = read_json("data/barang.json")
+    barang_dihapus = None
 
-        if not barang_ditemukan:
-            return {"error": f"Barang dengan ID '{id_barang}' tidak ditemukan."}
+    for kategori, daftar_barang in data_barang.items():
+        for i, barang in enumerate(daftar_barang):
+            if barang["id"] == id_barang:
+                barang_dihapus = data_barang[kategori].pop(i)
+                break
+        if barang_dihapus:
+            break
 
+    if not barang_dihapus:
+        return {"error": f"Barang dengan ID '{id_barang}' tidak ditemukan."}
 
-        write_json(BARANG_PATH, data)
-        return {"message": "Barang berhasil diperbarui", "barang": hasil_barang}
-    except Exception as e:
-        return {"error": f"Gagal memperbarui barang: {str(e)}"}
-
-
-def hapus_barang(id_barang: str) -> dict:
-    try:
-        if not os.path.exists(BARANG_PATH):
-            return {"error": "Data file not found."}
-
-
-        with open(BARANG_PATH, "r") as f:
-            data = json.load(f)
-
-
-        barang_ditemukan = False
-
-
-        for kategori, daftar_barang in data.items():
-            data_baru = []
-            for item in daftar_barang:
-                if item["id"] == id_barang:
-                    barang_ditemukan = True
-                    continue
-                data_baru.append(item)
-            data[kategori] = data_baru
-
-
-        if not barang_ditemukan:
-            return {"error": f"Barang dengan ID '{id_barang}' tidak ditemukan."}
-
-
-        with open(BARANG_PATH, "w") as f:
-            json.dump(data, f, indent=4)
-
-
-        return {"message": f"Barang dengan ID '{id_barang}' berhasil dihapus."}
-    except Exception as e:
-        return {"error": str(e)}
+    write_json("data/barang.json", data_barang)
+    return {
+        "message": f"Barang dengan ID '{id_barang}' berhasil dihapus.",
+        "data": barang_dihapus
+    }
 
 
 def cek_stok_menipis(id_barang: str) -> bool:
     data = read_json(BARANG_PATH)
-    for kategori in data.values():
-        for barang in kategori:
-            if barang["id"] == id_barang:
-                return barang["stok"] < 10
+    for barang in data:
+        if barang["id"] == id_barang:
+            return barang["stok"] < 10
     return False

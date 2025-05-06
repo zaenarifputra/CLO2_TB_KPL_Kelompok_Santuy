@@ -15,3 +15,4 @@ app.include_router(notif_controller.router, prefix="/notifikasi", tags=["Notifik
 app.include_router(transaksi_controller.router, prefix="/transaksi", tags=["Transaksi"])
 app.include_router(analisis_controller.router, prefix="/analisis", tags=["Analisis"])
 app.include_router(kategori_controller.router, prefix="/kategori", tags=["Kategori"])
+
