@@ -11,6 +11,7 @@ from service.stock_service import (
 )
 from schemas.barang_schema import Barang
 from schemas.response import ResponseModel
+from config import THRESHOLD_MINIMUM_STOK
 
 
 router = APIRouter(prefix="/stok", tags=["Stok Barang"])
@@ -96,3 +97,4 @@ def delete_barang(id_barang: str):
         message=hasil["message"],
         data={"id": id_barang}
     )
+
