@@ -30,10 +30,10 @@
         },
         {
             "id": "BR05",
-            "nama": "Beras Fortune Premium",
-            "harga": 95000,
-            "berat": "5 Kg",
-            "stok": 20
+            "nama": "Beras AJA",
+            "harga": 10000,
+            "berat": "5 KG",
+            "stok": 4
         }
     ],
     "MG": [
