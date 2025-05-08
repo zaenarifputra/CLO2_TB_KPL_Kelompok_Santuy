@@ -48,17 +48,26 @@ def show_header():
 # ============== MENU FUNGSI ==============
 def lihat_barang():
     try:
-        res = requests.get(f"{API_URL}/stok/stok")
+        res = requests.get(f"{API_URL}/stok/stok/stok/")
         res.raise_for_status()
-        data = res.json()
+        response = res.json()
 
-        if not isinstance(data, dict):
-            print("Data yang diterima tidak sesuai format (diharapkan dict berdasarkan kategori).")
+        # Pastikan response memiliki data dan berupa list
+        if "data" not in response or not isinstance(response["data"], list):
+            print("Data yang diterima tidak sesuai format (diharapkan list of barang).")
             return
+
+        # Ubah dari list menjadi dict per kategori (agar tampilan tidak berubah)
+        kategori_map = {}
+        for barang in response["data"]:
+            kategori = barang.get("kategori", "Lainnya").capitalize()
+            if kategori not in kategori_map:
+                kategori_map[kategori] = []
+            kategori_map[kategori].append(barang)
 
         print(f"\n📋 {YELLOW}DAFTAR BARANG - StokLy Inventory CLI{RESET}")
 
-        for kategori, daftar in data.items():
+        for kategori, daftar in kategori_map.items():
             if not isinstance(daftar, list):
                 continue
 
@@ -94,7 +103,7 @@ def tambah_barang_cli():
         
         # Menampilkan daftar barang setelah barang baru ditambahkan
         print(f"\n📋 DAFTAR BARANG - StokLy Inventory CLI\n")
-        res = requests.get(f"{API_URL}/stok/stok")
+        res = requests.get(f"{API_URL}/stok/stok/stok/")
         res.raise_for_status()
         data = res.json()
 
@@ -156,7 +165,7 @@ def edit_barang():
         print(f"{CYAN}\n🔄 Mengirim data ke API...{RESET}")
         print(update_data)
 
-        res = requests.put(f"{API_URL}/stok/stok/{id_barang}", json=update_data)
+        res = requests.put(f"{API_URL}/stok/stok/stok/{id_barang}", json=update_data)
         res.raise_for_status()
         updated_barang = res.json()
 
@@ -185,7 +194,7 @@ def hapus_barang():
     print(f"{RED}🗑️ Hapus Barang:{RESET}")
     id_barang = input("ID Barang yang ingin dihapus: ")
     try:
-        res = requests.delete(f"{API_URL}/stok/stok/{id_barang}")
+        res = requests.delete(f"{API_URL}/stok/stok/stok{id_barang}")
         res.raise_for_status()
         data = res.json()
 
@@ -206,7 +215,7 @@ def hapus_barang():
 def cari_barang():
     keyword = input("🔍 Masukkan nama barang yang dicari: ").lower()
     try:
-        res = requests.get(f"{API_URL}/stok/stok")
+        res = requests.get(f"{API_URL}/stok/stok/stok/")
         res.raise_for_status()
         hasil = []
 
@@ -260,7 +269,7 @@ def laporan_inventaris():
 def notif_stok_menipis():
     try:
         print(f"{YELLOW}⚠️ NOTIFIKASI STOK MENIPIS - StokLy Inventory CLI{RESET}")
-        res = requests.get(f"{API_URL}/notifikasi/stok")
+        res = requests.get(f"{API_URL}/notifikasi/stok/stok/")
         res.raise_for_status()
         data = res.json().get("stok_menipis", [])
 
