@@ -14,7 +14,7 @@ from schemas.response import ResponseModel
 from config import THRESHOLD_MINIMUM_STOK
 
 
-router = APIRouter(prefix="/stok", tags=["Stok Barang"])
+router = APIRouter(prefix="/stok/stok", tags=["Stok Barang"])
 
 
 @router.get("/", response_model=ResponseModel[List[Barang]], summary="Tampilkan semua barang")
