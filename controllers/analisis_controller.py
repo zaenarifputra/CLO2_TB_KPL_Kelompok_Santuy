@@ -1,15 +1,21 @@
 from fastapi import APIRouter
+from typing import List, Dict
+
 from service.analisis_service import tampilkan_barang_terlaris
 from schemas.response import ResponseModel
-from typing import List, Dict
+
 router = APIRouter()
 
 
-@router.get("/", response_model=ResponseModel[List[Dict]], summary="Tampilkan 3 barang terlaris")
-def barang_terlaris():
+@router.get(
+    "/", 
+    response_model=ResponseModel[List[Dict]], 
+    summary="Tampilkan 3 barang terlaris"
+)
+def get_barang_terlaris():
     result = tampilkan_barang_terlaris(
-        data_path="data/transaksi.json", 
-        id_key="barang_id", 
+        data_path="data/transaksi.json",
+        id_key="barang_id",
         jumlah_key="jumlah"
     )
     return ResponseModel(
