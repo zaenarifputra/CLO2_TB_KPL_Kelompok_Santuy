@@ -5,6 +5,7 @@ import requests
 import subprocess
 import sys
 from service.stock_service import tambah_barang_ke_file
+from memory_profiler import profile
 
 API_URL = "http://127.0.0.1:8000"
 
@@ -17,6 +18,8 @@ CYAN = "\033[36m"
 BOLD = "\033[1m"
 BLUE = "\033[34m"
 
+# Performance Test Memory Profiling By Ryan
+@profile
 def start_api_server():
     """Menjalankan server FastAPI secara otomatis di background."""
     subprocess.Popen(

@@ -1,0 +1,59 @@
+[ 
+  { 
+    "idKategori": "BR", 
+    "nama": "Beras" 
+  }, 
+
+
+  { 
+    "idKategori": "MG", 
+    "nama": "Minyak Goreng" 
+  }, 
+
+
+  { 
+    "idKategori": "MI", 
+    "nama": "Mie Instan" 
+  }, 
+
+
+  { 
+    "idKategori": "BB", 
+    "nama": "Bumbu Racik" 
+  },
+
+
+  {
+    "idKategori": "SH", 
+    "nama": "Sampo" 
+  },
+
+
+  {
+    "idKategori": "SM", 
+    "nama": "Sabun Mandi" 
+  },
+
+
+  {
+    "idKategori": "CK", 
+    "nama": "Ciki" 
+  },
+
+
+  {
+    "idKategori": "KP", 
+    "nama": "Kopi" 
+  },
+  
+  {
+    "idKategori": "MK", 
+    "nama": "Minuman Kemasan" 
+  },
+
+
+  {
+    "idKategori": "AM", 
+    "nama": "Air Mineral" 
+  }
+] 
