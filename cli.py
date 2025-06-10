@@ -1,12 +1,26 @@
+# ================================
+# 📦 StokLy Inventory CLI System
+# ================================
+# Modul utama untuk menjalankan CLI manajemen inventaris menggunakan API.
+# Fungsi utama mencakup: lihat, tambah, edit, hapus, cari barang, laporan, dan manajemen gambar produk.
+# Dibangun dengan komunikasi ke server FastAPI (API_URL diatur dalam file konfigurasi `api_url.json`).
+
 import time
+import os
 import json
-from tkinter.font import BOLD
 import requests
 import subprocess
 import sys
-from service.stock_service import tambah_barang_ke_file
+import json
+from PIL import Image
+from tkinter.font import BOLD
 
-API_URL = "http://127.0.0.1:8000"
+# Filter strategi untuk pemrosesan gambar
+from test.image_filter_context import ImageFilterContext
+from test.filter_strategy import GrayscaleFilter, BlurFilter, WatermarkFilter
+
+# Service untuk menambah barang ke file data
+from service.stock_service import tambah_barang_ke_file
 
 # ANSI color
 RESET = "\033[0m"
@@ -16,6 +30,17 @@ YELLOW = "\033[33m"
 CYAN = "\033[36m"
 BOLD = "\033[1m"
 BLUE = "\033[34m"
+
+# ===============================
+# Membaca konfigurasi API
+# ===============================
+# Mengambil URL API dari file JSON konfigurasi
+# Runtime Konfigurasi ini memungkinkan fleksibilitas dalam mengubah endpoint API tanpa mengubah kode.
+# Putra
+with open("data/api_url.json") as f:
+    config = json.load(f)
+API_URL = config["API_URL"]
+print(API_URL)
 
 def start_api_server():
     """Menjalankan server FastAPI secara otomatis di background."""
@@ -375,6 +400,42 @@ def lihat_transaksi():
     except Exception as e:
         print(f"{RED}Gagal mengambil transaksi: {e}{RESET}")
 
+def filter_gambar_produk():
+    print(f"{CYAN}🎨 FILTER GAMBAR PRODUK - StokLy Inventory CLI{RESET}")
+    path_input = input("🖼️  Masukkan path gambar (PNG/JPG): ").strip()
+    if not os.path.exists(path_input):
+        print(f"{RED}❌ File tidak ditemukan: {path_input}{RESET}")
+        return
+
+    print("📂 Pilih filter yang ingin diterapkan:")
+    print("1. Grayscale (abu-abu)")
+    print("2. Blur (kabur)")
+    print("3. Watermark (label StokLy)")
+
+    pilihan = input("Masukkan pilihan (1/2/3): ").strip()
+    strategy = None
+
+    if pilihan == "1":
+        strategy = GrayscaleFilter()
+    elif pilihan == "2":
+        strategy = BlurFilter()
+    elif pilihan == "3":
+        strategy = WatermarkFilter()
+    else:
+        print(f"{RED}❌ Pilihan tidak valid.{RESET}")
+        return
+
+    try:
+        image = Image.open(path_input)
+        context = ImageFilterContext()
+        context.set_strategy(strategy)
+        result = context.apply_filter(image)
+
+        path_output = input("💾 Simpan gambar sebagai (contoh: hasil.png): ").strip()
+        result.save(path_output)
+        print(f"{GREEN}✅ Gambar berhasil difilter dan disimpan di {path_output}{RESET}")
+    except Exception as e:
+        print(f"{RED}❌ Gagal memproses gambar: {e}{RESET}")
 
 # ============== MAIN MENU ==============
 def main_menu():
@@ -390,6 +451,7 @@ def main_menu():
         print("8️⃣  Lihat kategori")
         print("9️⃣  Tambah transaksi")
         print("🔟 Lihat semua transaksi")
+        print("1️⃣ 1️⃣ Filter gambar produk")
         print("0️⃣  Keluar")
         print()
 
@@ -405,6 +467,7 @@ def main_menu():
             "8": lihat_kategori,
             "9": tambah_transaksi,
             "10": lihat_transaksi,
+            "11": filter_gambar_produk,
             "0": exit
         }
 

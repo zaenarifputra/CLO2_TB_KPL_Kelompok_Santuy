@@ -97,4 +97,3 @@ def delete_barang(id_barang: str):
         message=hasil["message"],
         data={"id": id_barang}
     )
-
